@@ -29,6 +29,14 @@
 
 }
 
+-(void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    BMWMenuControllerViewController* menu = (BMWMenuControllerViewController *) [self parentViewController];
+    [menu setMenubarTitle:@"Home"];
+    menu.titleLabel.textColor = [UIColor blueColor];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

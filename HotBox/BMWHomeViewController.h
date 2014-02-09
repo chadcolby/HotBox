@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BMWMenuControllerViewController.h"
 
 @interface BMWHomeViewController : UIViewController
+
+@property (nonatomic, strong) IBOutlet UILabel *titleLabel;
 
 @end
