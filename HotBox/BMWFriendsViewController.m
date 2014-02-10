@@ -34,7 +34,7 @@
     
     BMWMenuControllerViewController* menu = (BMWMenuControllerViewController *) [self parentViewController];
     [menu setMenubarTitle:@"Friends"];
-    menu.titleLabel.textColor = [UIColor blueColor];
+    menu.titleLabel.textColor = [UIColor colorWithRed:243/255.f green:195/255.f blue:47/255.f alpha:1.0f];
 }
 
 - (void)didReceiveMemoryWarning

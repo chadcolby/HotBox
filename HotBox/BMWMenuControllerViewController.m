@@ -18,8 +18,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-
+    self.darkColor = [UIColor colorWithRed:45/255.f green:45/255.f blue:61/255.f alpha:1.0f];
+    self.lightColor = [UIColor colorWithRed:243/255.f green:195/255.f blue:47/255.f alpha:1.0f];
+    self.mediumColor = [UIColor colorWithRed:204/255.f green:154/255.f blue:31/255.f alpha:1.0f];
+    self.redishColor = [UIColor colorWithRed:205/255.f green:53/255.f blue:41/255.f alpha:0.89f];
+    self.greenishColor = [UIColor colorWithRed:165/255.f green:129/255.f blue:92/255.f alpha:1.0f];
 
 }
 
@@ -39,30 +42,31 @@
 - (void)dropDownMenuConfig
 {
     [self.menuButton setTitle:nil forState:UIControlStateNormal];
-    [self.menuButton setImage:[IonIcons imageWithIcon:icon_navicon size:30.0f color:[UIColor blueColor]] forState:UIControlStateNormal];
-    [self setMenubarBackground:[UIColor lightGrayColor]];
-    
+    [self.menuButton setImage:[IonIcons imageWithIcon:icon_navicon size:30.0f color:self.lightColor] forState:UIControlStateNormal];
+    [self setMenubarBackground:self.darkColor];
     for (UIButton *button in self.buttons) {
 
         if ([button.titleLabel.text isEqualToString:@"Home"]) {
-            button.backgroundColor = [UIColor whiteColor];
-            [IonIcons labelWithIcon:icon_navicon_round size:15.0f color:[UIColor blueColor]];
-            [button setImage:[IonIcons imageWithIcon:icon_person size:20.0f color:[UIColor blueColor]] forState:UIControlStateNormal];
+            button.backgroundColor = self.redishColor;
+            //[IonIcons labelWithIcon:icon_navicon_round size:15.0f color:self.darkColor];
+            [button setImage:[IonIcons imageWithIcon:icon_person size:20.0f color:self.darkColor] forState:UIControlStateNormal];
         } else if ([button.titleLabel.text isEqualToString:@"Inbox"]) {
-            button.backgroundColor = [UIColor whiteColor];
-            [IonIcons labelWithIcon:icon_home size:15.0f color:[UIColor blueColor]];
-            [button setImage:[IonIcons imageWithIcon:icon_ios7_email size:20.0f color:[UIColor blueColor]] forState:UIControlStateNormal];
+            button.backgroundColor = self.redishColor;
+            //[IonIcons labelWithIcon:icon_home size:15.0f color:self.darkColor];
+            [button setImage:[IonIcons imageWithIcon:icon_ios7_email size:20.0f color:self.darkColor] forState:UIControlStateNormal];
         } else if ([button.titleLabel.text isEqualToString:@"Friends"]) {
-            button.backgroundColor = [UIColor whiteColor];
-            [IonIcons labelWithIcon:icon_information size:15.0f color:[UIColor blueColor]];
-            [button setImage:[IonIcons imageWithIcon:icon_ios7_people size:20.0f color:[UIColor blueColor]] forState:UIControlStateNormal];
+            button.backgroundColor = self.redishColor;
+            //[IonIcons labelWithIcon:icon_information size:15.0f color:self.darkColor];
+            [button setImage:[IonIcons imageWithIcon:icon_ios7_people size:20.0f color:self.darkColor] forState:UIControlStateNormal];
         }
         
         [button sizeToFit];
         button.titleEdgeInsets = UIEdgeInsetsMake(0, -button.imageView.frame.size.width - 10, 0, button.imageView.frame.size.width);
         button.imageEdgeInsets =UIEdgeInsetsMake(0, button.titleLabel.frame.size.width, 0, -button.titleLabel.frame.size.width);
         
-        [button setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        [button setTitleColor:self.darkColor forState:UIControlStateNormal];
     }
 }
+
+
 @end

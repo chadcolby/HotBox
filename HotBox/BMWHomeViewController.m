@@ -8,33 +8,35 @@
 
 #import "BMWHomeViewController.h"
 
+
 @interface BMWHomeViewController ()
 
 @end
 
 @implementation BMWHomeViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
+    
+    self.backgroundView.image = [UIImage imageNamed:@"background2.png"];
 }
 
 -(void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    [self checkCurrentUser];
+
     
     BMWMenuControllerViewController* menu = (BMWMenuControllerViewController *) [self parentViewController];
     [menu setMenubarTitle:@"Home"];
-    menu.titleLabel.textColor = [UIColor blueColor];
+    menu.titleLabel.textColor = [UIColor colorWithRed:243/255.f green:195/255.f blue:47/255.f alpha:1.0f];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,4 +45,13 @@
 
 }
 
+- (void)checkCurrentUser
+{
+    self.currentUser = [PFUser currentUser];
+    if (self.currentUser) {
+        NSLog(@"Current User: %@", self.currentUser.username);
+    } else {
+        [self performSegueWithIdentifier:@"noUserLoggedIn" sender:self];
+    }
+}
 @end
