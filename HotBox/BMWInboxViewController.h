@@ -11,6 +11,6 @@
 
 @interface BMWInboxViewController : UITableViewController
 
-@property (nonatomic, strong) IBOutlet UILabel *titleLabel;
+
 
 @end

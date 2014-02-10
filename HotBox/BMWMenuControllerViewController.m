@@ -11,6 +11,9 @@
 
 @interface BMWMenuControllerViewController ()
 
+- (IBAction)logOutPressed:(id)sender;
+
+
 @end
 
 @implementation BMWMenuControllerViewController
@@ -18,11 +21,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.darkColor = [UIColor colorWithRed:45/255.f green:45/255.f blue:61/255.f alpha:1.0f];
-    self.lightColor = [UIColor colorWithRed:243/255.f green:195/255.f blue:47/255.f alpha:1.0f];
-    self.mediumColor = [UIColor colorWithRed:204/255.f green:154/255.f blue:31/255.f alpha:1.0f];
-    self.redishColor = [UIColor colorWithRed:205/255.f green:53/255.f blue:41/255.f alpha:0.89f];
-    self.greenishColor = [UIColor colorWithRed:165/255.f green:129/255.f blue:92/255.f alpha:1.0f];
+    [self colorSetUp];
+    
 
 }
 
@@ -37,6 +37,15 @@
 {
     [super didReceiveMemoryWarning];
 
+}
+
+- (void)colorSetUp
+{
+    self.darkColor = [UIColor colorWithRed:45/255.f green:45/255.f blue:61/255.f alpha:1.0f];
+    self.lightColor = [UIColor colorWithRed:243/255.f green:195/255.f blue:47/255.f alpha:1.0f];
+    self.mediumColor = [UIColor colorWithRed:204/255.f green:154/255.f blue:31/255.f alpha:1.0f];
+    self.redishColor = [UIColor colorWithRed:205/255.f green:53/255.f blue:41/255.f alpha:0.89f];
+    self.greenishColor = [UIColor colorWithRed:165/255.f green:129/255.f blue:92/255.f alpha:1.0f];
 }
 
 - (void)dropDownMenuConfig
@@ -65,8 +74,14 @@
         button.imageEdgeInsets =UIEdgeInsetsMake(0, button.titleLabel.frame.size.width, 0, -button.titleLabel.frame.size.width);
         
         [button setTitleColor:self.darkColor forState:UIControlStateNormal];
+            [self.logOut setTitleColor:self.lightColor forState:UIControlStateNormal];
     }
 }
 
 
+- (IBAction)logOutPressed:(id)sender {
+    NSLog(@"Log Out Requested");
+
+
+}
 @end

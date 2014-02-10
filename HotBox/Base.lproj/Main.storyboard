@@ -17,11 +17,11 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n7f-17-rUi">
-                                <rect key="frame" x="0.0" y="60" width="321" height="508"/>
+                                <rect key="frame" x="0.0" y="60" width="321" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <connections>
-                                    <segue destination="Owj-5g-GI1" kind="embed" id="QXi-lC-YhE"/>
+                                    <segue destination="Owj-5g-GI1" kind="embed" id="jfP-IX-4u3"/>
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EwD-dT-FDw" userLabel="Menu">
@@ -40,7 +40,7 @@
                                         </state>
                                         <connections>
                                             <action selector="listButtonAction:" destination="KVE-jE-dAp" eventType="touchUpInside" id="d0r-65-aAv"/>
-                                            <segue destination="Owj-5g-GI1" kind="custom" identifier="toHome" customClass="DropdownMenuSegue" id="Q9W-YZ-qEe"/>
+                                            <segue destination="Owj-5g-GI1" kind="custom" customClass="DropdownMenuSegue" id="tfI-vU-Py2"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ox-9E-dL9">
@@ -107,6 +107,17 @@
                                             <action selector="menuButtonAction:" destination="KVE-jE-dAp" eventType="touchUpInside" id="oci-zo-XDF"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O4s-IX-re3">
+                                        <rect key="frame" x="0.0" y="12" width="69" height="48"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <state key="normal" title="Log Out">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="logOutPressed:" destination="KVE-jE-dAp" eventType="touchUpInside" id="m4u-b0-9WP"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
@@ -125,7 +136,7 @@
                             <constraint firstItem="n7f-17-rUi" firstAttribute="leading" secondItem="9Hv-hF-l0A" secondAttribute="leading" id="1Gh-Ky-XBh"/>
                             <constraint firstItem="n7f-17-rUi" firstAttribute="leading" secondItem="HPJ-Yl-0Y7" secondAttribute="leading" id="4KN-8d-0CV"/>
                             <constraint firstItem="9Hv-hF-l0A" firstAttribute="top" secondItem="HPJ-Yl-0Y7" secondAttribute="top" id="C2V-6f-Guy"/>
-                            <constraint firstAttribute="bottom" secondItem="n7f-17-rUi" secondAttribute="bottom" id="CpV-1i-BkM"/>
+                            <constraint firstAttribute="bottom" secondItem="n7f-17-rUi" secondAttribute="bottom" constant="-60" id="CpV-1i-BkM"/>
                             <constraint firstItem="9Hv-hF-l0A" firstAttribute="trailing" secondItem="n7f-17-rUi" secondAttribute="trailing" id="LL0-zb-UGP"/>
                             <constraint firstItem="9Hv-hF-l0A" firstAttribute="leading" secondItem="EwD-dT-FDw" secondAttribute="leading" id="Pen-xu-bVK"/>
                             <constraint firstItem="9Hv-hF-l0A" firstAttribute="top" secondItem="EwD-dT-FDw" secondAttribute="bottom" id="PgE-uA-WBf"/>
@@ -135,8 +146,10 @@
                             <constraint firstItem="EwD-dT-FDw" firstAttribute="trailing" secondItem="9Hv-hF-l0A" secondAttribute="trailing" id="f4a-5m-4SX"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="NKx-Fh-HaF"/>
                     <connections>
                         <outlet property="container" destination="n7f-17-rUi" id="HdA-BN-arh"/>
+                        <outlet property="logOut" destination="O4s-IX-re3" id="yZH-vw-tCy"/>
                         <outlet property="menu" destination="EwD-dT-FDw" id="qgS-cF-dZq"/>
                         <outlet property="menuButton" destination="0kn-CA-cAc" id="ALR-jh-Izk"/>
                         <outlet property="menubar" destination="9Hv-hF-l0A" id="2Fi-AL-nAF"/>
@@ -153,7 +166,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="126" y="3"/>
+            <point key="canvasLocation" x="194" y="3"/>
         </scene>
         <!--Inbox View Controller-->
         <scene sceneID="ama-14-odj">
@@ -181,7 +194,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="faI-Qx-7ZJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="809" y="-24"/>
+            <point key="canvasLocation" x="802" y="3"/>
         </scene>
         <!--Friends View Controller-->
         <scene sceneID="Clr-Sd-1zG">
@@ -214,34 +227,63 @@
         <!--Home View Controller-->
         <scene sceneID="Swt-Zt-Cd1">
             <objects>
-                <viewController storyboardIdentifier="homeViewController" id="Owj-5g-GI1" customClass="BMWHomeViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="homeVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Owj-5g-GI1" customClass="BMWHomeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="urs-aT-Z72"/>
                         <viewControllerLayoutGuide type="bottom" id="I5o-TH-W6S"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="xlw-bI-RrJ">
-                        <rect key="frame" x="0.0" y="0.0" width="321" height="508"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0fZ-M8-1SY">
-                                <rect key="frame" x="0.0" y="0.0" width="321" height="508"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="628"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="dZ0-vx-RKk"/>
                     <connections>
                         <outlet property="backgroundView" destination="0fZ-M8-1SY" id="Ab5-Uv-K22"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xqR-VQ-UaQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="787" y="-719"/>
+            <point key="canvasLocation" x="809" y="-719"/>
+        </scene>
+        <!--Current User Container View Controller-->
+        <scene sceneID="gD7-W2-fUV">
+            <objects>
+                <viewController storyboardIdentifier="loginContainerView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7cm-hP-sXr" customClass="BMWCurrentUserContainerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JMP-tH-htU"/>
+                        <viewControllerLayoutGuide type="bottom" id="3NW-EN-6dJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WQ1-Uo-eJH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <containerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1rW-ZG-5JJ">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="huI-36-qMx" kind="embed" id="P8W-FU-fOb"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eTC-YJ-f9d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1368" y="-719"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="vKq-R7-47P">
             <objects>
-                <viewController id="huI-36-qMx" customClass="BMWLoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="newLoginVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="huI-36-qMx" customClass="BMWLoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CVh-BQ-Ick"/>
                         <viewControllerLayoutGuide type="bottom" id="gXe-Zf-S5c"/>
@@ -282,10 +324,14 @@
                                 <state key="normal" title="New Account">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="createNewAccountPressed:" destination="huI-36-qMx" eventType="touchUpInside" id="3gc-U7-lSS"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="XrY-xP-HkH"/>
                     <connections>
                         <outlet property="backgroundView" destination="j7C-iS-YQN" id="SdQ-Bg-NWV"/>
                         <outlet property="passwordField" destination="S1h-Pt-J7o" id="Va3-gF-UiH"/>
@@ -294,12 +340,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e49-Yg-YRg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1233" y="-749"/>
+            <point key="canvasLocation" x="1938" y="-1235"/>
         </scene>
         <!--New User Sign In View Controller-->
         <scene sceneID="Zeg-zt-5hI">
             <objects>
-                <viewController id="lep-0M-6RE" customClass="BMWNewUserSignInViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="newAccountVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lep-0M-6RE" customClass="BMWNewUserSignInViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kLM-oS-UQb"/>
                         <viewControllerLayoutGuide type="bottom" id="ycQ-aB-zvL"/>
@@ -353,6 +399,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="4UF-z0-psn"/>
                     <connections>
                         <outlet property="backgroundView" destination="drI-3f-EAh" id="3Vj-4m-Iz3"/>
                         <outlet property="emailField" destination="V9D-1m-cMD" id="II8-yd-YeP"/>
@@ -362,7 +409,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iys-oT-QSc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1714" y="-749"/>
+            <point key="canvasLocation" x="1938" y="-505"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -371,6 +418,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="QXi-lC-YhE"/>
+        <segue reference="tfI-vU-Py2"/>
     </inferredMetricsTieBreakers>
 </document>

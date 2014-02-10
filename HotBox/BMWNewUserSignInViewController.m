@@ -7,15 +7,21 @@
 //
 
 #import "BMWNewUserSignInViewController.h"
+#import "BMWHomeViewController.h"
 #import "BMWMenuControllerViewController.h"
+#import "BMWLoginViewController.h"
 #import <Parse/Parse.h>
 
 @interface BMWNewUserSignInViewController ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundView;
+@property (weak, nonatomic) BMWHomeViewController *homeView;
 @property (strong, nonatomic) NSString *username;
 @property (strong, nonatomic) NSString *password;
 @property (strong, nonatomic) NSString *email;
+
+
+
 - (IBAction)cancelPressed:(id)sender;
 
 
@@ -26,6 +32,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+
     
     [self setUpview];
 
@@ -74,15 +82,18 @@
                   [NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
     if ([self.username length] == 0 || [self.password length] == 0 || [self.email length] == 0) {
+
         [self showMissingInfoAlert];
     } else {
         [self createNewUser];
+
+        
     }
 }
 
 - (IBAction)cancelPressed:(id)sender
 {
-    
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 #pragma mark - Parse Methods
@@ -100,7 +111,7 @@
         if (error) {
             [self showCreateNewAllert:error];
         } else {
-
+            [self.navigationController popToRootViewControllerAnimated:YES];
         }
     }];
 }

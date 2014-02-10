@@ -7,6 +7,7 @@
 //
 
 #import "BMWLoginViewController.h"
+
 #import "BMWMenuControllerViewController.h"
 #import "BMWHomeViewController.h"
 #import <Parse/Parse.h>
@@ -14,6 +15,7 @@
 @interface BMWLoginViewController ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundView;
+
 @property (strong, nonatomic) NSString *username;
 @property (strong, nonatomic) NSString *password;
 
@@ -25,6 +27,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [PFUser logOut];
     
     [self setUpview];
     
@@ -61,6 +65,8 @@
     return YES;
 }
 
+#pragma mark - IBActions
+
 - (IBAction)signInPressed:(id)sender {
     self.username = [self.usernameField.text stringByTrimmingCharactersInSet:
                      [NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -68,20 +74,28 @@
                      [NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
     if ([self.username length] == 0 || [self.password length] == 0 ) {
-        [self showLoginError];
+        [self emptyFieldsError];
+
+        
     } else {
         [self tryLogin];
         [self.passwordField resignFirstResponder];
+
     }
     
     
+}
+
+- (IBAction)createNewAccountPressed:(id)sender {
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)tryLogin
 {
     [PFUser logInWithUsernameInBackground:self.username password:self.password block:^(PFUser *user, NSError *error) {
         if (error) {
-            [self showLoginError];
+            [self showLoginError:error];
         } else {
 
         }
@@ -90,11 +104,17 @@
 
 #pragma mark - Alert Views
 
-- (void)showLoginError
+- (void)showLoginError:(NSError *)error;
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Something Went Wrong." message: nil delegate:self cancelButtonTitle:@"Try again." otherButtonTitles: nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Something Went Wrong." message: [error.userInfo objectForKey:@"error"] delegate:self cancelButtonTitle:@"Try again." otherButtonTitles: nil];
     
     [alert show];
 }
 
+- (void)emptyFieldsError
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Something Went Wrong." message:@"Please Fill in Both Fields" delegate:self cancelButtonTitle:@"Try again." otherButtonTitles: nil];
+    
+    [alert show];
+}
 @end
