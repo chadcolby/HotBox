@@ -59,13 +59,14 @@
         if (!objects) {
             NSLog(@"Error");
         } else {
-            NSLog(@"count:%d", objects.count);
+            NSLog(@"count:%lu", (unsigned long)objects.count);
             self.queryArray = (NSMutableArray *)objects;
         }
         if (self.queryArray.count == 0) {
             NSLog(@"No events to update.");
 
             [[NSNotificationCenter defaultCenter] postNotificationName:@"noEvents" object:self];
+            
         } else {
         
             [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshComplete" object:self];
@@ -93,7 +94,7 @@
         return 1;
     } else {
         return [self.queryArray count];
-        NSLog(@"More info: %d", self.queryArray.count);
+        NSLog(@"More info: %lu", (unsigned long)self.queryArray.count);
     }
     //return 5;
 }

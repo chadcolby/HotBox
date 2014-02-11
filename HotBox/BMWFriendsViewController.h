@@ -11,6 +11,6 @@
 
 @interface BMWFriendsViewController : UITableViewController
 
-
+@property (strong, nonatomic) NSArray *friendsArray;
 
 @end
