@@ -9,6 +9,8 @@
 #import "DropdownMenuController.h"
 #import "BMWAppDelegate.h"
 #import "BMWHomeViewController.h"
+#import "BMWLoginViewController.h"
+
 #import <Parse/Parse.h>
 
 @interface BMWMenuControllerViewController : DropdownMenuController
@@ -19,8 +21,6 @@
 @property (nonatomic, strong) UIColor *mediumColor;
 @property (nonatomic, strong) UIColor *redishColor;
 @property (nonatomic, strong) UIColor *greenishColor;
-
-@property (weak, nonatomic) IBOutlet UIButton *logOut;
 
 
 @end

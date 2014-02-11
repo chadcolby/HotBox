@@ -7,12 +7,13 @@
 //
 
 #import "BMWMenuControllerViewController.h"
+
 #import "IonIcons.h"
 
 @interface BMWMenuControllerViewController ()
 
+@property (nonatomic, strong) BMWLoginViewController *loginVC;
 - (IBAction)logOutPressed:(id)sender;
-
 
 @end
 
@@ -23,7 +24,10 @@
     [super viewDidLoad];
     [self colorSetUp];
     
+    if (![PFUser currentUser]) {
+        [self createNewViewController];
 
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -31,6 +35,7 @@
     [super viewDidAppear:animated];
     
     [self dropDownMenuConfig];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -67,6 +72,10 @@
             button.backgroundColor = self.redishColor;
             //[IonIcons labelWithIcon:icon_information size:15.0f color:self.darkColor];
             [button setImage:[IonIcons imageWithIcon:icon_ios7_people size:20.0f color:self.darkColor] forState:UIControlStateNormal];
+        }   else if ([button.titleLabel.text isEqualToString:@"Log Out"]) {
+            button.backgroundColor = self.redishColor;
+            //[IonIcons labelWithIcon:icon_information size:15.0f color:self.darkColor];
+            [button setImage:[IonIcons imageWithIcon:icon_ios7_close size:20.0f color:self.darkColor] forState:UIControlStateNormal];
         }
         
         [button sizeToFit];
@@ -74,14 +83,21 @@
         button.imageEdgeInsets =UIEdgeInsetsMake(0, button.titleLabel.frame.size.width, 0, -button.titleLabel.frame.size.width);
         
         [button setTitleColor:self.darkColor forState:UIControlStateNormal];
-            [self.logOut setTitleColor:self.lightColor forState:UIControlStateNormal];
+
     }
 }
 
+- (void)createNewViewController
+{
+    self.loginVC = [self.storyboard instantiateViewControllerWithIdentifier:@"newLoginVC"];
+    //self.menu.titleLabel.text = @"Sign Up";
+    [self addChildViewController:self.loginVC];
+    self.loginVC.view.frame = self.view.frame;
+    [self.view addSubview:self.loginVC.view];
+    [self.loginVC didMoveToParentViewController:self];
+}
 
 - (IBAction)logOutPressed:(id)sender {
-    NSLog(@"Log Out Requested");
-
-
+    [self createNewViewController];
 }
 @end

@@ -15,7 +15,7 @@
 @interface BMWNewUserSignInViewController ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundView;
-@property (weak, nonatomic) BMWHomeViewController *homeView;
+@property (weak, nonatomic) BMWMenuControllerViewController *homeView;
 @property (strong, nonatomic) NSString *username;
 @property (strong, nonatomic) NSString *password;
 @property (strong, nonatomic) NSString *email;
@@ -86,15 +86,27 @@
         [self showMissingInfoAlert];
     } else {
         [self createNewUser];
-
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"newAccountCreated" object:nil];
         
     }
 }
 
 - (IBAction)cancelPressed:(id)sender
 {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.usernameField resignFirstResponder];
+    [self.passwordField resignFirstResponder];
+    [self.emailField resignFirstResponder];
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        {self.view.alpha = 0.0;};
+    } completion:^(BOOL finished) {
+        [self willMoveToParentViewController:self.homeView];
+        [self.view removeFromSuperview];
+    }];
+
+    
 }
+
 
 #pragma mark - Parse Methods
 
@@ -111,7 +123,9 @@
         if (error) {
             [self showCreateNewAllert:error];
         } else {
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            [self willMoveToParentViewController:nil];
+            [self.view removeFromSuperview];
+
         }
     }];
 }

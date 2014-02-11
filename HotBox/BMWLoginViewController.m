@@ -9,16 +9,21 @@
 #import "BMWLoginViewController.h"
 
 #import "BMWMenuControllerViewController.h"
+#import "DropdownMenuSegue.h"
 #import "BMWHomeViewController.h"
+#import "BMWNewUserSignInViewController.h"
+#import "BMWHomeViewController.h"
+#import "BMWAppDelegate.h"
 #import <Parse/Parse.h>
 
 @interface BMWLoginViewController ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundView;
+@property (strong, nonatomic) BMWNewUserSignInViewController *addAccountViewController;
 
 @property (strong, nonatomic) NSString *username;
 @property (strong, nonatomic) NSString *password;
-
+@property (strong, nonatomic) BMWMenuControllerViewController *menu;
 
 @end
 
@@ -30,9 +35,36 @@
     
     [PFUser logOut];
     
-    [self setUpview];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newUserSuccessfullyCreate:) name:@"newAccountCreated" object:nil];
     
+    if (![PFUser currentUser]) {
+        self.menu.menuButton.enabled = NO;
+    }
+    
+    [self setUpview];
 
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if (![PFUser currentUser]) {
+
+    } else {
+
+        
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    self.menu = (BMWMenuControllerViewController *) [self parentViewController];
+    [self.menu setMenubarTitle:@"Sign In"];
+    self.menu.titleLabel.textColor = [UIColor colorWithRed:243/255.f green:195/255.f blue:47/255.f alpha:1.0f];
+     
 }
 
 - (void)didReceiveMemoryWarning
@@ -68,6 +100,7 @@
 #pragma mark - IBActions
 
 - (IBAction)signInPressed:(id)sender {
+    
     self.username = [self.usernameField.text stringByTrimmingCharactersInSet:
                      [NSCharacterSet whitespaceAndNewlineCharacterSet]];
     self.password = [self.passwordField.text stringByTrimmingCharactersInSet:
@@ -75,21 +108,41 @@
     
     if ([self.username length] == 0 || [self.password length] == 0 ) {
         [self emptyFieldsError];
-
-        
+        [self.usernameField becomeFirstResponder];
     } else {
-        [self tryLogin];
-        [self.passwordField resignFirstResponder];
-
+        
+            [self willMoveToParentViewController:nil];
+            [self.view removeFromSuperview];
     }
     
     
 }
 
+
+
 - (IBAction)createNewAccountPressed:(id)sender {
-    
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.usernameField resignFirstResponder];
+    [self.passwordField resignFirstResponder];
+
+    [UIView animateWithDuration:0.1 animations:^{
+        [self createNewViewController];
+    } completion:^(BOOL finished) {
+        self.view.alpha = 1.0;
+    }];
+
 }
+
+- (void)createNewViewController
+{
+    self.addAccountViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"newAccountVC"];
+    self.menu.titleLabel.text = @"Sign Up";
+    [self addChildViewController:self.addAccountViewController];
+    self.addAccountViewController.view.frame = self.view.frame;
+    [self.view addSubview:self.addAccountViewController.view];
+    [self.addAccountViewController didMoveToParentViewController:self];
+}
+
+#pragma mark - Parse
 
 - (void)tryLogin
 {
@@ -117,4 +170,12 @@
     
     [alert show];
 }
+
+- (void)newUserSuccessfullyCreate:(NSNotification *)notification
+{
+    [self willMoveToParentViewController:self];
+    [self.view removeFromSuperview];
+}
+
+
 @end

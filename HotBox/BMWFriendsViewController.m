@@ -26,7 +26,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    if (![PFUser currentUser]) {
+        
+    }
 }
 
 -(void) viewDidAppear:(BOOL)animated {

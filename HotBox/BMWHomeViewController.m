@@ -24,7 +24,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self checkCurrentUser];
+    //[self checkCurrentUser];
 
     self.backgroundView.image = [UIImage imageNamed:@"background2.png"];
 }
@@ -38,6 +38,7 @@
     [menu setMenubarTitle:@"Home"];
     
     menu.titleLabel.textColor = [UIColor colorWithRed:243/255.f green:195/255.f blue:47/255.f alpha:1.0f];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
