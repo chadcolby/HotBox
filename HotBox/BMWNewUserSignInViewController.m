@@ -11,6 +11,7 @@
 #import "BMWMenuControllerViewController.h"
 #import "BMWLoginViewController.h"
 #import <Parse/Parse.h>
+#import "IonIcons.h"
 
 @interface BMWNewUserSignInViewController ()
 
@@ -62,7 +63,9 @@
     self.emailField.delegate = self;
     
     [self.cancelButton setTitleColor:self.textColor forState:UIControlStateNormal];
+   [self.cancelButton setImage:[IonIcons imageWithIcon:icon_ios7_close size:20.0f color:self.textColor] forState:UIControlStateNormal];
     [self.signUpButton setTitleColor:self.textColor forState:UIControlStateNormal];
+   [self.signUpButton setImage:[IonIcons imageWithIcon:icon_ios7_checkmark size:20.0f color:self.textColor] forState:UIControlStateNormal];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

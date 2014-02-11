@@ -61,19 +61,19 @@
 
         if ([button.titleLabel.text isEqualToString:@"Home"]) {
             button.backgroundColor = self.redishColor;
-            //[IonIcons labelWithIcon:icon_navicon_round size:15.0f color:self.darkColor];
+            [IonIcons labelWithIcon:icon_navicon_round size:15.0f color:self.darkColor];
             [button setImage:[IonIcons imageWithIcon:icon_person size:20.0f color:self.darkColor] forState:UIControlStateNormal];
-        } else if ([button.titleLabel.text isEqualToString:@"Inbox"]) {
+        } else if ([button.titleLabel.text isEqualToString:@"New"]) {
             button.backgroundColor = self.redishColor;
-            //[IonIcons labelWithIcon:icon_home size:15.0f color:self.darkColor];
-            [button setImage:[IonIcons imageWithIcon:icon_ios7_email size:20.0f color:self.darkColor] forState:UIControlStateNormal];
+            [IonIcons labelWithIcon:icon_home size:15.0f color:self.darkColor];
+            [button setImage:[IonIcons imageWithIcon:icon_ios7_compose size:20.0f color:self.darkColor] forState:UIControlStateNormal];
         } else if ([button.titleLabel.text isEqualToString:@"Friends"]) {
             button.backgroundColor = self.redishColor;
-            //[IonIcons labelWithIcon:icon_information size:15.0f color:self.darkColor];
+            [IonIcons labelWithIcon:icon_information size:15.0f color:self.darkColor];
             [button setImage:[IonIcons imageWithIcon:icon_ios7_people size:20.0f color:self.darkColor] forState:UIControlStateNormal];
         }   else if ([button.titleLabel.text isEqualToString:@"Log Out"]) {
             button.backgroundColor = self.redishColor;
-            //[IonIcons labelWithIcon:icon_information size:15.0f color:self.darkColor];
+            [IonIcons labelWithIcon:icon_information size:15.0f color:self.darkColor];
             [button setImage:[IonIcons imageWithIcon:icon_ios7_close size:20.0f color:self.darkColor] forState:UIControlStateNormal];
         }
         

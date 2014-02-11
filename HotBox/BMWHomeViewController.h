@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import "BMWMenuControllerViewController.h"
+#import "EventsDataSource.h"
 
-@interface BMWHomeViewController : UIViewController
+@interface BMWHomeViewController : UIViewController <UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundView;
-
+@property (strong, nonatomic) EventsDataSource *eventsDataSource;
 
 
 

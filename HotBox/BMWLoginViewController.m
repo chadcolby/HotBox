@@ -14,6 +14,7 @@
 #import "BMWNewUserSignInViewController.h"
 #import "BMWHomeViewController.h"
 #import "BMWAppDelegate.h"
+#import "IonIcons.h"
 #import <Parse/Parse.h>
 
 @interface BMWLoginViewController ()
@@ -81,7 +82,9 @@
     self.passwordField.delegate = self;
     self.usernameField.delegate = self;
     [self.signInButton setTitleColor:self.textColor forState:UIControlStateNormal];
+    [self.signInButton setImage:[IonIcons imageWithIcon:icon_ios7_person size:20.0f color:self.self.textColor] forState:UIControlStateNormal];
     [self.accountButton setTitleColor:self.textColor forState:UIControlStateNormal];
+    [self.accountButton setImage:[IonIcons imageWithIcon:icon_ios7_plus size:20.0f color:self.self.textColor] forState:UIControlStateNormal];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

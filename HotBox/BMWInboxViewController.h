@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "BMWMenuControllerViewController.h"
 
-@interface BMWInboxViewController : UITableViewController
+@interface BMWInboxViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate, UIActionSheetDelegate>
 
+- (IBAction)createEventPressed:(id)sender;
 
 @end

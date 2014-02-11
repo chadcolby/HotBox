@@ -8,6 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-@interface EventsDataSource : NSObject
+@interface EventsDataSource : NSObject <UITableViewDataSource>
+
+@property (nonatomic, weak) UITableView *tableView;
+@property (nonatomic, strong) __block NSMutableArray *queryArray;
+@property (nonatomic, strong) UIColor *darkColor;
+@property (nonatomic, strong) UIColor *lighColor;
+@property (nonatomic) BOOL isEvents;
+
++ (EventsDataSource *)sharedDataSource;
 
 @end
