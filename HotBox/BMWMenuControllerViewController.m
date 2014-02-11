@@ -12,7 +12,8 @@
 
 @interface BMWMenuControllerViewController ()
 
-@property (nonatomic, strong) BMWLoginViewController *loginVC;
+@property (nonatomic, weak) BMWLoginViewController *loginVC;
+@property (nonatomic, strong) PFUser *currentUser;
 - (IBAction)logOutPressed:(id)sender;
 
 @end
@@ -22,18 +23,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self colorSetUp];
-    
-    if (![PFUser currentUser]) {
-        [self createNewViewController];
 
-    }
+    [self colorSetUp];
+    [self checkForCurrentUser];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
+
     [self dropDownMenuConfig];
 
 }
@@ -90,14 +89,27 @@
 - (void)createNewViewController
 {
     self.loginVC = [self.storyboard instantiateViewControllerWithIdentifier:@"newLoginVC"];
-    //self.menu.titleLabel.text = @"Sign Up";
     [self addChildViewController:self.loginVC];
     self.loginVC.view.frame = self.view.frame;
     [self.view addSubview:self.loginVC.view];
     [self.loginVC didMoveToParentViewController:self];
 }
 
-- (IBAction)logOutPressed:(id)sender {
-    [self createNewViewController];
+- (void)checkForCurrentUser
+{
+    self.currentUser = [PFUser currentUser];
+    if (self.currentUser ) {
+        NSLog(@"%@", self.currentUser.username);
+    } else {
+        [self createNewViewController];
+        NSLog(@"no user");
+    }
 }
+
+- (IBAction)logOutPressed:(id)sender
+{
+    [PFUser logOut];
+    [self checkForCurrentUser];
+}
+
 @end

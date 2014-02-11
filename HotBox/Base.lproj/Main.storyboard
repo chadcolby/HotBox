@@ -76,7 +76,6 @@
                                         <connections>
                                             <action selector="listButtonAction:" destination="KVE-jE-dAp" eventType="touchUpInside" id="eky-jb-Hn1"/>
                                             <action selector="logOutPressed:" destination="KVE-jE-dAp" eventType="touchUpInside" id="cxx-28-5vh"/>
-                                            <segue destination="huI-36-qMx" kind="custom" identifier="toLogOut" customClass="DropdownMenuSegue" id="aLH-Pf-KH4"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -167,7 +166,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="194" y="3"/>
+            <point key="canvasLocation" x="-178" y="159"/>
         </scene>
         <!--Inbox View Controller-->
         <scene sceneID="ama-14-odj">
@@ -284,6 +283,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rg7-XW-0LN">
                                 <rect key="frame" x="20" y="138" width="280" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="1"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="21"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
                                 <state key="normal" title="Sign In">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -294,6 +296,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jOn-uP-fM6">
                                 <rect key="frame" x="20" y="196" width="280" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="21"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
                                 <state key="normal" title="New Account">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -306,8 +311,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="XrY-xP-HkH"/>
                     <connections>
+                        <outlet property="accountButton" destination="jOn-uP-fM6" id="i0h-Gb-wTW"/>
                         <outlet property="backgroundView" destination="j7C-iS-YQN" id="SdQ-Bg-NWV"/>
                         <outlet property="passwordField" destination="S1h-Pt-J7o" id="Va3-gF-UiH"/>
+                        <outlet property="signInButton" destination="rg7-XW-0LN" id="bJR-g8-81M"/>
                         <outlet property="usernameField" destination="awO-MU-nKj" id="2Df-eu-U9O"/>
                     </connections>
                 </viewController>
@@ -352,6 +359,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mth-Bv-ddX">
                                 <rect key="frame" x="20" y="193" width="280" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="21"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
                                 <state key="normal" title="Sign Up">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -362,6 +372,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c9N-ER-ICU">
                                 <rect key="frame" x="20" y="251" width="280" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="21"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
                                 <state key="normal" title="Cancel">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -375,14 +388,16 @@
                     <navigationItem key="navigationItem" id="4UF-z0-psn"/>
                     <connections>
                         <outlet property="backgroundView" destination="drI-3f-EAh" id="3Vj-4m-Iz3"/>
+                        <outlet property="cancelButton" destination="c9N-ER-ICU" id="Q8N-6H-w3d"/>
                         <outlet property="emailField" destination="V9D-1m-cMD" id="II8-yd-YeP"/>
                         <outlet property="passwordField" destination="dsg-Av-JPL" id="nNT-PT-OfX"/>
+                        <outlet property="signUpButton" destination="Mth-Bv-ddX" id="XWo-MY-bUr"/>
                         <outlet property="usernameField" destination="QXh-E4-C0E" id="B5d-Ta-gaB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iys-oT-QSc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="465" y="-1149"/>
+            <point key="canvasLocation" x="1605" y="-1149"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

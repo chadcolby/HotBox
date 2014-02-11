@@ -19,6 +19,9 @@
 @property (strong, nonatomic) NSString *username;
 @property (strong, nonatomic) NSString *password;
 @property (strong, nonatomic) NSString *email;
+@property (strong, nonatomic) UIColor *textColor;
+@property (weak, nonatomic) IBOutlet UIButton *signUpButton;
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 
 
 
@@ -33,7 +36,7 @@
 {
     [super viewDidLoad];
     
-
+    self.textColor = [UIColor colorWithRed:45/255.f green:45/255.f blue:61/255.f alpha:1.0f];
     
     [self setUpview];
 
@@ -57,6 +60,9 @@
     self.passwordField.delegate = self;
     self.usernameField.delegate = self;
     self.emailField.delegate = self;
+    
+    [self.cancelButton setTitleColor:self.textColor forState:UIControlStateNormal];
+    [self.signUpButton setTitleColor:self.textColor forState:UIControlStateNormal];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

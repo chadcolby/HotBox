@@ -20,10 +20,12 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundView;
 @property (strong, nonatomic) BMWNewUserSignInViewController *addAccountViewController;
-
+@property (strong, nonatomic) UIColor *textColor;
 @property (strong, nonatomic) NSString *username;
 @property (strong, nonatomic) NSString *password;
 @property (strong, nonatomic) BMWMenuControllerViewController *menu;
+@property (weak, nonatomic) IBOutlet UIButton *signInButton;
+@property (weak, nonatomic) IBOutlet UIButton *accountButton;
 
 @end
 
@@ -32,8 +34,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.textColor = [UIColor colorWithRed:45/255.f green:45/255.f blue:61/255.f alpha:1.0f];
+
     
-    [PFUser logOut];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newUserSuccessfullyCreate:) name:@"newAccountCreated" object:nil];
     
@@ -49,12 +52,7 @@
 {
     [super viewWillAppear:animated];
     
-    if (![PFUser currentUser]) {
 
-    } else {
-
-        
-    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -62,7 +60,6 @@
     [super viewDidAppear:animated];
     
     self.menu = (BMWMenuControllerViewController *) [self parentViewController];
-    [self.menu setMenubarTitle:@"Sign In"];
     self.menu.titleLabel.textColor = [UIColor colorWithRed:243/255.f green:195/255.f blue:47/255.f alpha:1.0f];
      
 }
@@ -83,6 +80,8 @@
     self.passwordField.alpha = 0.5f;
     self.passwordField.delegate = self;
     self.usernameField.delegate = self;
+    [self.signInButton setTitleColor:self.textColor forState:UIControlStateNormal];
+    [self.accountButton setTitleColor:self.textColor forState:UIControlStateNormal];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -110,9 +109,7 @@
         [self emptyFieldsError];
         [self.usernameField becomeFirstResponder];
     } else {
-        
-            [self willMoveToParentViewController:nil];
-            [self.view removeFromSuperview];
+        [self tryLogin];
     }
     
     
@@ -124,7 +121,7 @@
     [self.usernameField resignFirstResponder];
     [self.passwordField resignFirstResponder];
 
-    [UIView animateWithDuration:0.1 animations:^{
+    [UIView animateWithDuration:0.4 animations:^{
         [self createNewViewController];
     } completion:^(BOOL finished) {
         self.view.alpha = 1.0;
@@ -135,7 +132,6 @@
 - (void)createNewViewController
 {
     self.addAccountViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"newAccountVC"];
-    self.menu.titleLabel.text = @"Sign Up";
     [self addChildViewController:self.addAccountViewController];
     self.addAccountViewController.view.frame = self.view.frame;
     [self.view addSubview:self.addAccountViewController.view];
@@ -150,9 +146,11 @@
         if (error) {
             [self showLoginError:error];
         } else {
-
+            [self clearItAll];
+            NSLog(@"success");
         }
     }];
+    
 }
 
 #pragma mark - Alert Views
@@ -176,6 +174,16 @@
     [self willMoveToParentViewController:self];
     [self.view removeFromSuperview];
 }
+
+- (void)clearItAll
+{
+    
+    [self willMoveToParentViewController:self];
+    [self.view removeFromSuperview];
+    
+    NSLog(@"Cleared");
+}
+
 
 
 @end

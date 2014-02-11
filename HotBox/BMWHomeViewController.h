@@ -13,7 +13,7 @@
 @interface BMWHomeViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundView;
-@property (strong, nonatomic) PFUser *currentUser;
+
 
 
 

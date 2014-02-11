@@ -12,5 +12,4 @@
 @interface BMWInboxViewController : UITableViewController
 
 
-
 @end
